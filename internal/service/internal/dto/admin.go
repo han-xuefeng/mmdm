@@ -11,7 +11,7 @@ import (
 
 // AdminForDao is the golang structure of table mmdm_admin for DAO operations like Where/Data.
 type Admin struct {
-	g.Meta   `orm:"dto:true"`
+	g.Meta   `orm:"table:mmdm_admin,dto:true"`
 	Id       interface{} // 自增id
 	UserName interface{} // 用户名
 	Salt     interface{} // 盐

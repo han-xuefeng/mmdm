@@ -18,5 +18,11 @@ func (a *handlerAdmin) AdminLogin(ctx context.Context, req *apiv1.AdminLoginReq)
 		UserName: req.UserName,
 		Password: req.Password,
 	})
+	if err != nil {
+		return nil,err
+	}
+	res = &apiv1.AdminLoginRes{
+		Token: req.UserName,
+	}
 	return
 }
