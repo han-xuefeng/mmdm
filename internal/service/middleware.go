@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/gogf/gf/v2/net/ghttp"
+	"github.com/gogf/gf/v2/os/gsession"
 	"mmdm/internal/model"
 )
 
@@ -11,6 +12,7 @@ type serviceMiddleware struct{}
 
 // Ctx injects custom business context variable into context of current request.
 func (s *serviceMiddleware) Ctx(r *ghttp.Request) {
+	gsession.NewStorageFile()
 	customCtx := &model.Context{
 		Session: r.Session,
 	}

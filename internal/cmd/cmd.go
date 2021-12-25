@@ -2,12 +2,11 @@ package cmd
 
 import (
 	"context"
-	"mmdm/internal/service"
-
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
 	"mmdm/internal/handler"
+	"mmdm/internal/service"
 )
 
 var (
@@ -17,6 +16,11 @@ var (
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server()
+			// 设置session 目录
+			//s.SetConfigWithMap(g.Map{
+			//	"SessionMaxAge": time.Minute,
+			//	"SessionStorage":gsession.NewStorageFile("D:/opt"),
+			//})
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(
 					service.Middleware.Ctx,
