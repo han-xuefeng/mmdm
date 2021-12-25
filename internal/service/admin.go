@@ -41,5 +41,8 @@ func (s *adminService) AdminLogin(ctx context.Context, in model.AdminLoginInput)
 	if admin.Password != saltPassword {
 		return gerror.New("密码错误，请重新输入")
 	}
+	if err = Session.SetAdmin(ctx,admin); err != nil {
+		return err
+	}
 	return
 }
