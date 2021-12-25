@@ -1,0 +1,21 @@
+server:
+  address:     ":8000"
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+
+logger:
+  level : "all"
+  stdout: true
+
+# CLI.
+gfcli:
+  gen:
+    dao:
+      - link:            "mysql:root:root@tcp(127.0.0.1:3306)/mmdm"
+        tables:          "mmdm_admin"
+        removePrefix:    "mmdm_"
+        descriptionTag:  true
+        noModelComment:  true
+
+
+
