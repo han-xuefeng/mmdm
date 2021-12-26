@@ -26,3 +26,14 @@ func (a *handlerAdmin) AdminLogin(ctx context.Context, req *apiv1.AdminLoginReq)
 	}
 	return
 }
+
+func (a *handlerAdmin) AdminLogout(ctx context.Context, req *apiv1.AdminLogoutReq)(res *apiv1.AdminLoutRes,err error){
+	err = service.Admin.AdminLogout(ctx)
+	return
+}
+
+func (a *handlerAdmin) AdminInfo(ctx context.Context, req *apiv1.AdminInfoReq) (res *apiv1.AdminInfoRes, err error){
+	admin := service.Admin.SessionAdminInfo(ctx)
+	res = &apiv1.AdminInfoRes{Admin: admin}
+	return
+}

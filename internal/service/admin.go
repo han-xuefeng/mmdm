@@ -19,14 +19,6 @@ type adminService struct {
 }
 
 func (s *adminService) AdminLogin(ctx context.Context, in model.AdminLoginInput) (err error) {
-	// example
-	//err = dao.User.Ctx(ctx).Where(dto.User{
-	//	Passport: in.Passport,
-	//	Password: in.Password,
-	//}).Scan(&user)
-	//if err != nil {
-	//	return err
-	//}
 	var admin *entity.Admin
 	err = dao.Admin.Ctx(ctx).Where(dto.Admin{
 		UserName: in.UserName,
@@ -44,5 +36,15 @@ func (s *adminService) AdminLogin(ctx context.Context, in model.AdminLoginInput)
 	if err = Session.SetAdmin(ctx,admin); err != nil {
 		return err
 	}
+	return
+}
+
+func (s *adminService) AdminLogout (ctx context.Context) (err error) {
+	err = Session.RemoveAdmin(ctx)
+	return
+}
+
+func (s *adminService) SessionAdminInfo(ctx context.Context) (admin *entity.Admin) {
+	admin = Session.GetAdmin(ctx)
 	return
 }

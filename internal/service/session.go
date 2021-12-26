@@ -26,3 +26,11 @@ func (s *serviceSession) GetAdmin(ctx context.Context) *entity.Admin {
 	}
 	return nil
 }
+
+func (s *serviceSession) RemoveAdmin(ctx context.Context) error {
+	customCtx := Context.Get(ctx)
+	if customCtx != nil {
+		return customCtx.Session.Remove(consts.AdminSessionKey)
+	}
+	return nil
+}
