@@ -4,6 +4,7 @@ import (
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gsession"
 	"mmdm/internal/model"
+	"net/http"
 )
 
 var Middleware = serviceMiddleware{}
@@ -25,5 +26,12 @@ func (s *serviceMiddleware) Ctx(r *ghttp.Request) {
 		}
 	}
 	// Continue execution of next middleware.
+	r.Middleware.Next()
+}
+func (s *serviceMiddleware) CheckAdminLogin(r *ghttp.Request) {
+	admin := Session.GetAdmin(r.Context())
+	if admin == nil {
+		r.Response.WriteStatus(http.StatusForbidden)
+	}
 	r.Middleware.Next()
 }
