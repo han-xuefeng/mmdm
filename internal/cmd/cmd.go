@@ -29,6 +29,7 @@ var (
 				group.Bind(
 					handler.Hello,
 					handler.Admin,
+					handler.Datasource,
 				)
 			})
 			s.Run()
