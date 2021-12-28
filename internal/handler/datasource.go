@@ -4,6 +4,7 @@ import (
 	"context"
 	"mmdm/apiv1"
 	"mmdm/internal/model"
+	"mmdm/internal/model/entity"
 	"mmdm/internal/service"
 )
 
@@ -45,5 +46,23 @@ func (a *handlerDatasource) DatasourceEdit (ctx context.Context, req *apiv1.Data
 		Port: req.Port,
 		Host: req.Host,
 	})
+	return
+}
+
+func (a *handlerDatasource) DatasourceDelete (ctx context.Context, req *apiv1.DatasourceDeleteReq) (res *apiv1.DatasourceDeleteRes, err error) {
+	err = service.Datasource.DeleteOneById(ctx, model.DatasourceDetailInput{
+		Id:req.Id,
+	})
+	return
+}
+
+func (a *handlerDatasource) DatasourceDetail (ctx context.Context, req *apiv1.DatasourceDetailReq) (res *apiv1.DatasourceDetailRes, err error) {
+	var datasource *entity.Datasource
+	datasource,err = service.Datasource.GetOneById(ctx, model.DatasourceDetailInput{
+		Id:req.Id,
+	})
+	res = &apiv1.DatasourceDetailRes{
+		Datasource:datasource,
+	}
 	return
 }

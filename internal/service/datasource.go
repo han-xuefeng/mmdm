@@ -59,11 +59,25 @@ func (s *datasourceService) Update(ctx context.Context, in model.DatasourceEditI
 	return err
 }
 
+func (s *datasourceService) DeleteOneById(ctx context.Context, in model.DatasourceDetailInput) (err error) {
+	_, err = dao.Datasource.Ctx(ctx).Where(dto.Datasource{
+		Id:       in.Id,
+	}).Delete()
+	return err
+}
+
 func (s *datasourceService) GetListPage(ctx context.Context, in model.DatasourceListInput) (list []*entity.Datasource, total int, err error) {
 	total, err = dao.Datasource.Ctx(ctx).Count()
 	if err != nil {
 		return
 	}
 	err = dao.Datasource.Ctx(ctx).Page(in.Page, in.PageSize).Scan(&list)
+	return
+}
+
+func (s *datasourceService) GetOneById(ctx context.Context, in model.DatasourceDetailInput) (datasource *entity.Datasource, err error) {
+	err = dao.Datasource.Ctx(ctx).Where(dto.Datasource{
+		Id: in.Id,
+	}).Scan(&datasource)
 	return
 }

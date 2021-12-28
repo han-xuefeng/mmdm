@@ -21,3 +21,7 @@ type DatasourceEditInput struct {
 	Host string
 	UserName string
 }
+
+type DatasourceDetailInput struct {
+	Id int64
+}
