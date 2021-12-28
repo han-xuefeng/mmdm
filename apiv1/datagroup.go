@@ -55,3 +55,11 @@ type DatagroupDetailReq struct {
 type DatagroupDetailRes struct {
 	*entity.Datagroup
 }
+
+type DataGroupSqlExecReq struct {
+	g.Meta   `path:"/datagroup/sql_exec" method:"post" tags:"Datagroup" summary:"sql执行"`
+	Id       int64  `v:"required" p:"id"`
+	Sql      string `v:"required" p:"sql"`
+}
+
+type DataGroupSqlExecRes struct {}

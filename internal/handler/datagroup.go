@@ -64,3 +64,10 @@ func (a *handlerDatagroup) DatagroupDetail (ctx context.Context, req *apiv1.Data
 	}
 	return
 }
+
+func (a *handlerDatagroup) SqlExec(ctx context.Context, req *apiv1.DataGroupSqlExecReq) (res *apiv1.DataGroupSqlExecRes, err error) {
+
+	
+
+	return
+}
