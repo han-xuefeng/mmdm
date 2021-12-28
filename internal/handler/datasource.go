@@ -35,3 +35,15 @@ func (a *handlerDatasource) DatasourceCreate (ctx context.Context, req *apiv1.Da
 	})
 	return
 }
+
+func (a *handlerDatasource) DatasourceEdit (ctx context.Context, req *apiv1.DatasourceEditReq) (res *apiv1.DatasourceEditRes, err error) {
+	err = service.Datasource.Update(ctx, model.DatasourceEditInput{
+		Id:req.Id,
+		Name: req.Name,
+		UserName: req.UserName,
+		Passport: req.Password,
+		Port: req.Port,
+		Host: req.Host,
+	})
+	return
+}

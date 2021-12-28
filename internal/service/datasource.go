@@ -15,7 +15,6 @@ var (
 )
 
 type datasourceService struct {
-
 }
 
 func (s *datasourceService) Create(ctx context.Context, in model.DatasourceCreateInput) (err error) {
@@ -38,17 +37,29 @@ func (s *datasourceService) Create(ctx context.Context, in model.DatasourceCreat
 
 	return dao.Datasource.Transaction(ctx, func(ctx context.Context, tx *gdb.TX) error {
 		_, err = dao.Datasource.Ctx(ctx).Data(dto.Datasource{
-			Name: in.Name,
+			Name:     in.Name,
 			UserName: in.UserName,
 			Password: in.Passport,
-			Host: in.Host,
-			Port: in.Port,
+			Host:     in.Host,
+			Port:     in.Port,
 		}).Insert()
 		return err
 	})
 }
 
-func (s *datasourceService) GetListPage(ctx context.Context, in model.DatasourceListInput) (list []*entity.Datasource, total int,err error) {
+func (s *datasourceService) Update(ctx context.Context, in model.DatasourceEditInput) (err error) {
+	_, err = dao.Datasource.Ctx(ctx).Data(dto.Datasource{
+		Id:       in.Id,
+		Name:     in.Name,
+		UserName: in.UserName,
+		Password: in.Passport,
+		Host:     in.Host,
+		Port:     in.Port,
+	}).Save()
+	return err
+}
+
+func (s *datasourceService) GetListPage(ctx context.Context, in model.DatasourceListInput) (list []*entity.Datasource, total int, err error) {
 	total, err = dao.Datasource.Ctx(ctx).Count()
 	if err != nil {
 		return
