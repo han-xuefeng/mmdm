@@ -30,6 +30,7 @@ var (
 					handler.Hello,
 					handler.Admin,
 					handler.Datasource,
+					handler.Datagroup,
 				)
 			})
 			s.Run()
