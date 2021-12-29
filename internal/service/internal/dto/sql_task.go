@@ -9,15 +9,15 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// SqlTsakForDao is the golang structure of table mmdm_sql_tsak for DAO operations like Where/Data.
-type SqlTsak struct {
+// SqlTaskForDao is the golang structure of table mmdm_sql_task for DAO operations like Where/Data.
+type SqlTask struct {
 	g.Meta    `orm:"dto:true"`
 	Id        interface{} // 自增id
 	Name      interface{} // 任务名
 	Desc      interface{} // 任务描述
 	GroupId   interface{} // 组id
 	Sql       interface{} // 需要执行的sql
-	Status    interface{} // 状态
+	Status    interface{} // 状态 0默认 1执行中 2执行结束
 	ExecBegin interface{} // 命令执行开始时间
 	ExecOver  interface{} // 命令执行结束时间
 	CreateAt  *gtime.Time // 新增时间

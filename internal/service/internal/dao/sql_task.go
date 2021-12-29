@@ -8,16 +8,16 @@ import (
 	"mmdm/internal/service/internal/dao/internal"
 )
 
-// sqlTsakDao is the data access object for table mmdm_sql_tsak.
+// sqlTaskDao is the data access object for table mmdm_sql_task.
 // You can define custom methods on it to extend its functionality as you wish.
-type sqlTsakDao struct {
-	*internal.SqlTsakDao
+type sqlTaskDao struct {
+	*internal.SqlTaskDao
 }
 
 var (
-	// SqlTsak is globally public accessible object for table mmdm_sql_tsak operations.
-	SqlTsak = sqlTsakDao{
-		internal.NewSqlTsakDao(),
+	// SqlTask is globally public accessible object for table mmdm_sql_task operations.
+	SqlTask = sqlTaskDao{
+		internal.NewSqlTaskDao(),
 	}
 )
 

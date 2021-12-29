@@ -12,3 +12,15 @@ type SqlTaskCreateInput struct {
 	GroupId int64
 	Sql string
 }
+
+type SqlTaskEditInput struct {
+	Id int64
+	Name string
+	Desc string
+	GroupId int64
+	Sql string
+}
+
+type SqlTaskDetailInput struct {
+	Id int64
+}

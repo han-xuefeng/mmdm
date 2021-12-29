@@ -8,14 +8,14 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// SqlTsak is the golang structure for table sql_tsak.
-type SqlTsak struct {
+// SqlTask is the golang structure for table sql_task.
+type SqlTask struct {
 	Id        int64       `json:"id"        description:"自增id"`
 	Name      string      `json:"name"      description:"任务名"`
 	Desc      string      `json:"desc"      description:"任务描述"`
 	GroupId   int64       `json:"groupId"   description:"组id"`
 	Sql       string      `json:"sql"       description:"需要执行的sql"`
-	Status    int         `json:"status"    description:"状态"`
+	Status    int         `json:"status"    description:"状态 0默认 1执行中 2执行结束"`
 	ExecBegin int64       `json:"execBegin" description:"命令执行开始时间"`
 	ExecOver  int64       `json:"execOver"  description:"命令执行结束时间"`
 	CreateAt  *gtime.Time `json:"createAt"  description:"新增时间"`
