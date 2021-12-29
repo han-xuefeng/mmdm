@@ -31,6 +31,7 @@ var (
 					handler.Admin,
 					handler.Datasource,
 					handler.Datagroup,
+					handler.SqlTask,
 				)
 			})
 			s.Run()

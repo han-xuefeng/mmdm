@@ -19,26 +19,32 @@ type SqlTsakDao struct {
 
 // SqlTsakColumns defines and stores column names for table mmdm_sql_tsak.
 type SqlTsakColumns struct {
-	Id       string // 自增id
-	Name     string // 任务名
-	Desc     string // 任务描述
-	GroupId  string // 组id
-	Sql      string // 需要执行的sql
-	CreateAt string // 新增时间
-	UpdateAt string // 更新时间
-	IsDelete string // 是否删除
+	Id        string // 自增id
+	Name      string // 任务名
+	Desc      string // 任务描述
+	GroupId   string // 组id
+	Sql       string // 需要执行的sql
+	Status    string // 状态
+	ExecBegin string // 命令执行开始时间
+	ExecOver  string // 命令执行结束时间
+	CreateAt  string // 新增时间
+	UpdateAt  string // 更新时间
+	IsDelete  string // 是否删除
 }
 
 //  sqlTsakColumns holds the columns for table mmdm_sql_tsak.
 var sqlTsakColumns = SqlTsakColumns{
-	Id:       "id",
-	Name:     "name",
-	Desc:     "desc",
-	GroupId:  "group_id",
-	Sql:      "sql",
-	CreateAt: "create_at",
-	UpdateAt: "update_at",
-	IsDelete: "is_delete",
+	Id:        "id",
+	Name:      "name",
+	Desc:      "desc",
+	GroupId:   "group_id",
+	Sql:       "sql",
+	Status:    "status",
+	ExecBegin: "exec_begin",
+	ExecOver:  "exec_over",
+	CreateAt:  "create_at",
+	UpdateAt:  "update_at",
+	IsDelete:  "is_delete",
 }
 
 // NewSqlTsakDao creates and returns a new DAO object for table data access.

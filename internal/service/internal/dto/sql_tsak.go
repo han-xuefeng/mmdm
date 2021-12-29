@@ -11,13 +11,16 @@ import (
 
 // SqlTsakForDao is the golang structure of table mmdm_sql_tsak for DAO operations like Where/Data.
 type SqlTsak struct {
-	g.Meta   `orm:"dto:true"`
-	Id       interface{} // 自增id
-	Name     interface{} // 任务名
-	Desc     interface{} // 任务描述
-	GroupId  interface{} // 组id
-	Sql      interface{} // 需要执行的sql
-	CreateAt *gtime.Time // 新增时间
-	UpdateAt *gtime.Time // 更新时间
-	IsDelete interface{} // 是否删除
+	g.Meta    `orm:"dto:true"`
+	Id        interface{} // 自增id
+	Name      interface{} // 任务名
+	Desc      interface{} // 任务描述
+	GroupId   interface{} // 组id
+	Sql       interface{} // 需要执行的sql
+	Status    interface{} // 状态
+	ExecBegin interface{} // 命令执行开始时间
+	ExecOver  interface{} // 命令执行结束时间
+	CreateAt  *gtime.Time // 新增时间
+	UpdateAt  *gtime.Time // 更新时间
+	IsDelete  interface{} // 是否删除
 }

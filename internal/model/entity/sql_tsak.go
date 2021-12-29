@@ -10,12 +10,15 @@ import (
 
 // SqlTsak is the golang structure for table sql_tsak.
 type SqlTsak struct {
-	Id       int64       `json:"id"       description:"自增id"`
-	Name     string      `json:"name"     description:"任务名"`
-	Desc     string      `json:"desc"     description:"任务描述"`
-	GroupId  int64       `json:"groupId"  description:"组id"`
-	Sql      string      `json:"sql"      description:"需要执行的sql"`
-	CreateAt *gtime.Time `json:"createAt" description:"新增时间"`
-	UpdateAt *gtime.Time `json:"updateAt" description:"更新时间"`
-	IsDelete int         `json:"isDelete" description:"是否删除"`
+	Id        int64       `json:"id"        description:"自增id"`
+	Name      string      `json:"name"      description:"任务名"`
+	Desc      string      `json:"desc"      description:"任务描述"`
+	GroupId   int64       `json:"groupId"   description:"组id"`
+	Sql       string      `json:"sql"       description:"需要执行的sql"`
+	Status    int         `json:"status"    description:"状态"`
+	ExecBegin int64       `json:"execBegin" description:"命令执行开始时间"`
+	ExecOver  int64       `json:"execOver"  description:"命令执行结束时间"`
+	CreateAt  *gtime.Time `json:"createAt"  description:"新增时间"`
+	UpdateAt  *gtime.Time `json:"updateAt"  description:"更新时间"`
+	IsDelete  int         `json:"isDelete"  description:"是否删除"`
 }
