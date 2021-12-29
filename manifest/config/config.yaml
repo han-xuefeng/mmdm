@@ -22,7 +22,7 @@ gfcli:
   gen:
     dao:
       - link:            "mysql:root:root@tcp(127.0.0.1:3306)/mmdm"
-        tables:          "mmdm_admin,mmdm_datasource,mmdm_datagroup"
+        tables:          "mmdm_admin,mmdm_datasource,mmdm_datagroup,mmdm_sql_tsak"
         removePrefix:    "mmdm_"
         descriptionTag:  true
         noModelComment:  true
