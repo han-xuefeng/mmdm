@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/errors/gerror"
 	"mmdm/internal/model"
 	"mmdm/internal/model/entity"
 	"mmdm/internal/service/internal/dao"
@@ -17,6 +18,21 @@ type datagroupService struct {
 }
 
 func (s *datagroupService) Create(ctx context.Context, in model.DatagroupCreateInput) (err error) {
+
+	var datasource *entity.Datasource
+
+	datasource , err = Datasource.GetOneById(ctx,model.DatasourceDetailInput{
+		Id: in.SourceId,
+	})
+
+	if err != nil {
+		return err
+	}
+
+	if datasource == nil {
+		return gerror.New("数据源不存在")
+	}
+
 	return dao.Datagroup.Transaction(ctx, func(ctx context.Context, tx *gdb.TX) error {
 		_, err = dao.Datagroup.Ctx(ctx).Data(dto.Datagroup{
 			Name:     in.Name,
