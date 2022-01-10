@@ -2,7 +2,6 @@ package apiv1
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"mmdm/internal/model/entity"
 )
 
 type AdminLoginReq struct {
@@ -25,6 +24,19 @@ type AdminInfoReq struct {
 	g.Meta   `path:"/admin/info" method:"get" tags:"Admin" summary:"admin info"`
 }
 type AdminInfoRes struct {
-	*entity.Admin
+	ID           int64       `json:"id"`
+	Name         string    `json:"name"`
+	Avatar       string    `json:"avatar"`
+	Introduction string    `json:"introduction"`
+	Roles        []string  `json:"roles"`
+}
+
+type AdminChangePwdReq struct {
+	g.Meta   `path:"/admin/change_pwd" method:"post" tags:"Admin" summary:"change password"`
+	Password string `v:"required" p:"password"`
+}
+
+type AdminChangePwdRes struct {
+
 }
 

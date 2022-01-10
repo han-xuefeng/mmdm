@@ -34,6 +34,19 @@ func (a *handlerAdmin) AdminLogout(ctx context.Context, req *apiv1.AdminLogoutRe
 
 func (a *handlerAdmin) AdminInfo(ctx context.Context, req *apiv1.AdminInfoReq) (res *apiv1.AdminInfoRes, err error){
 	admin := service.Admin.SessionAdminInfo(ctx)
-	res = &apiv1.AdminInfoRes{Admin: admin}
+	res = &apiv1.AdminInfoRes{
+		ID: admin.Id,
+		Name: admin.UserName,
+		Introduction: "I am a super administrator",
+		Roles:[]string{"admin"},
+		Avatar:       "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+	}
+	return
+}
+
+func (a *handlerAdmin) AdminChangePwd(ctx context.Context, req *apiv1.AdminChangePwdReq)(res *apiv1.AdminChangePwdRes,err error){
+	err = service.Admin.AdminChangePwd(ctx, model.AdminChangePwd{
+		Password: req.Password,
+	})
 	return
 }

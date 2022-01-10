@@ -48,3 +48,15 @@ func (s *adminService) SessionAdminInfo(ctx context.Context) (admin *entity.Admi
 	admin = Session.GetAdmin(ctx)
 	return
 }
+
+func (s *adminService) AdminChangePwd(ctx context.Context, in model.AdminChangePwd) (err error)  {
+	var admin *entity.Admin
+	admin = Session.GetAdmin(ctx)
+	if admin == nil {
+		return gerror.New(`用户不存在`)
+	}
+	saltPassword := utility.GenSaltPassword(admin.Salt, in.Password)
+	admin.Password = saltPassword
+	dao.Admin.Ctx(ctx).Save(admin)
+	return
+}
