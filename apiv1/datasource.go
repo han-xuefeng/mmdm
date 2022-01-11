@@ -12,8 +12,8 @@ type DatasourceListReq struct {
 }
 
 type DatasourceListRes struct {
-	List  []*entity.Datasource
-	Total int
+	List  []*entity.Datasource `json:"list"`
+	Total int `json:"total"`
 }
 
 type DatasourceCreateReq struct {
