@@ -26,6 +26,15 @@ func (a *handlerDatasource) DatasourceList (ctx context.Context, req *apiv1.Data
 	return
 }
 
+
+func (a *handlerDatasource) DatasourceListAll (ctx context.Context, req *apiv1.DatasourceListAllReq) (res *apiv1.DatasourceListAllRes, err error) {
+	list, err := service.Datasource.GetListAll(ctx)
+	res = &apiv1.DatasourceListAllRes{
+		List: list,
+	}
+	return
+}
+
 func (a *handlerDatasource) DatasourceCreate (ctx context.Context, req *apiv1.DatasourceCreateReq) (res *apiv1.DatasourceCreateRes, err error) {
 	err = service.Datasource.Create(ctx, model.DatasourceCreateInput{
 		Name: req.Name,

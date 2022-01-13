@@ -75,6 +75,11 @@ func (s *datasourceService) GetListPage(ctx context.Context, in model.Datasource
 	return
 }
 
+func (s *datasourceService) GetListAll(ctx context.Context) (list []*entity.Datasource, err error) {
+	err = dao.Datasource.Ctx(ctx).Scan(&list)
+	return
+}
+
 func (s *datasourceService) GetOneById(ctx context.Context, in model.DatasourceDetailInput) (datasource *entity.Datasource, err error) {
 	err = dao.Datasource.Ctx(ctx).Where(dto.Datasource{
 		Id: in.Id,

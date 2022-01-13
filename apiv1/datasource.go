@@ -16,6 +16,14 @@ type DatasourceListRes struct {
 	Total int `json:"total"`
 }
 
+type DatasourceListAllReq struct {
+	g.Meta   `path:"/datasource/listAll" method:"get" tags:"Datasource" summary:"数据源列表"`
+}
+
+type DatasourceListAllRes struct {
+	List  []*entity.Datasource `json:"list"`
+}
+
 type DatasourceCreateReq struct {
 	g.Meta   `path:"/datasource/create" method:"post" tags:"Datasource" summary:"数据源创建"`
 	Name     string `v:"required" p:"name"`
