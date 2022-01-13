@@ -25,3 +25,8 @@ type DatasourceEditInput struct {
 type DatasourceDetailInput struct {
 	Id int64
 }
+
+
+type DatasourceIdsInput struct {
+	Ids []int64
+}

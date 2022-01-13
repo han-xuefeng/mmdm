@@ -81,3 +81,8 @@ func (s *datasourceService) GetOneById(ctx context.Context, in model.DatasourceD
 	}).Scan(&datasource)
 	return
 }
+
+func (s *datasourceService) GetListByIds(ctx context.Context, in model.DatasourceIdsInput) (list []*entity.Datasource, err error) {
+	err = dao.Datasource.Ctx(ctx).WhereIn("id", in.Ids).Scan(&list)
+	return
+}

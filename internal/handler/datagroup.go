@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"fmt"
 	"mmdm/apiv1"
 	"mmdm/internal/model"
 	"mmdm/internal/model/entity"
@@ -19,8 +20,36 @@ func (a *handlerDatagroup) DatagroupList (ctx context.Context, req *apiv1.Datagr
 		Page: req.Page,
 		PageSize: req.PageSize,
 	})
+
+	var ids = make([]int64,0)
+
+	for _, item := range list {
+		ids = append(ids, item.SourceId)
+	}
+
+	// 处理数据源
+	datasourceList, err  := service.Datasource.GetListByIds(ctx, model.DatasourceIdsInput{
+		Ids: ids,
+	})
+	fmt.Println(datasourceList)
+	if err != nil {
+		return
+	}
+	var datasourceListMap = make(map[int64]string, 0)
+	for _, datasource := range datasourceList {
+		datasourceListMap[datasource.Id] = datasource.Name
+	}
+	fmt.Println(datasourceListMap)
+	var outputList = make([]*model.DatagroupListItemOutput,0)
+	for _, datagroup := range list {
+		item := &model.DatagroupListItemOutput{
+			Datagroup:datagroup,
+			SourceName: datasourceListMap[datagroup.SourceId],
+		}
+		outputList = append(outputList, item)
+	}
 	res = &apiv1.DatagroupListRes{
-		List: list,
+		List:  outputList,
 		Total: total,
 	}
 	return

@@ -2,6 +2,7 @@ package apiv1
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
+	"mmdm/internal/model"
 	"mmdm/internal/model/entity"
 )
 
@@ -12,8 +13,8 @@ type DatagroupListReq struct {
 }
 
 type DatagroupListRes struct {
-	List  []*entity.Datagroup
-	Total int
+	List  []*model.DatagroupListItemOutput `json:"list"`
+	Total int `json:"total"`
 }
 
 type DatagroupCreateReq struct {
